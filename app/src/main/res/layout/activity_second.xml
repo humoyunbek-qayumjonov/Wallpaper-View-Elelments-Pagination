@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/image_second"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+    android:id="@+id/back_button"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@drawable/ellips"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="24dp"
+    android:scaleType="center"
+    android:src="@drawable/ic_baseline_arrow_back_24"
+    />
+
+    <ImageView
+        android:id="@+id/share_button"
+        app:layout_constraintTop_toTopOf="@id/back_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ellips"
+        app:layout_constraintRight_toLeftOf="@id/info_button"
+        android:layout_marginRight="24dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_baseline_share_24"
+        />
+
+    <ImageView
+        android:id="@+id/info_button"
+        app:layout_constraintTop_toTopOf="@id/back_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ellips"
+        android:layout_marginRight="24dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_vector__6_"
+        />
+
+    <ImageView
+        android:id="@+id/save_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/ellips"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintRight_toLeftOf="@id/right_button"
+        android:scaleType="center"
+        android:src="@drawable/ic_vector__7_"/>
+
+
+    <ImageView
+        android:id="@+id/right_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/ellips"
+        app:layout_constraintBottom_toBottomOf="@id/save_button"
+        app:layout_constraintLeft_toRightOf="@id/save_button"
+        app:layout_constraintRight_toLeftOf="@id/star_button"
+        android:scaleType="center"
+        android:src="@drawable/ic_vector__8_"/>
+    <ImageView
+        android:id="@+id/star_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/ellips"
+        app:layout_constraintBottom_toBottomOf="@id/save_button"
+        app:layout_constraintRight_toLeftOf="@id/liked_button"
+        app:layout_constraintLeft_toRightOf="@id/right_button"
+        android:scaleType="center"
+        android:src="@drawable/ic_vector__9_"/>
+    <ImageView
+        android:id="@+id/liked_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/ellips"
+        app:layout_constraintBottom_toBottomOf="@id/save_button"
+        app:layout_constraintLeft_toRightOf="@id/star_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="center"
+        android:src="@drawable/ic_vector__10_"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

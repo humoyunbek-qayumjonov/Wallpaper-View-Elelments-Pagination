@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/nav_home"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_vector__2_"
+        android:title="Home"/>
+    <item android:id="@+id/nav_gallery"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_vector__3_"
+        android:title="Popular"/>
+    <item android:id="@+id/nav_slideshow"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_vector__4_"
+        android:title="Random"/>
+    <item android:id="@+id/nav_liked"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_vector__5_"
+        android:title="Like"/>
+
+</menu>

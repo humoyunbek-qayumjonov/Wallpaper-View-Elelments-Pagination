@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.wallpaper_exam.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.wallpaper_exam.ui.gallery.PopularFragment"
+        android:label="@string/menu_popular"
+        tools:layout="@layout/fragment_popular" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.wallpaper_exam.ui.slideshow.RandomFragment"
+        android:label="@string/menu_random"
+        tools:layout="@layout/fragment_random" />
+    <fragment
+        android:id="@+id/nav_liked"
+        android:name="com.example.wallpaper_exam.ui.liked.LikedFragment"
+        android:label="My Favourits"
+        tools:layout="@layout/fragment_liked" />
+</navigation>
