@@ -2,12 +2,17 @@ package com.example.wallpaper_exam.ui.liked
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.example.homework5_92.adapters.RvAdapters
 import com.example.wallpaper_exam.ImageFragment
 import com.example.wallpaper_exam.R
+import com.example.wallpaper_exam.SecondActivity
+import com.example.wallpaper_exam.adapters.LikedAdapter
+import com.example.wallpaper_exam.kesh.MySharedPrefarance
+import com.example.wallpaper_exam.models.keshmodel.KeshPhotoModel
 import kotlinx.android.synthetic.main.fragment_liked.view.*
 import kotlinx.android.synthetic.main.fragment_random.view.*
 import java.lang.Exception
@@ -50,27 +55,25 @@ class LikedFragment : Fragment() {
         }
     }
     lateinit var root:View
-    lateinit var rvAdapters: RvAdapters
-    lateinit var imageList: ArrayList<Int>
+    lateinit var likedAdapter: LikedAdapter
+    lateinit var imageList: ArrayList<KeshPhotoModel>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.fragment_liked, container, false)
         imageList = ArrayList()
-        for (i in 0..20) {
-            imageList.add(R.drawable.cosmos)
-            imageList.add(R.drawable.mi)
-            imageList.add(R.drawable.nature1)
-            imageList.add(R.drawable.people)
-            imageList.add(R.drawable.phone)
-        }
-        rvAdapters = RvAdapters(imageList, object : RvAdapters.OnMyItemClickListener {
-            override fun onMyItemClick(image: Int) {
-                someEventListener?.someEvent(image)
+        MySharedPrefarance.init(context)
+        imageList = MySharedPrefarance.obektString
+
+        likedAdapter = LikedAdapter(imageList, object : LikedAdapter.OnMyItemClickListener {
+            override fun onMyItemClick(image: String) {
+                val intent = Intent(context, SecondActivity::class.java)
+                intent.putExtra("image1",image)
+                startActivity(intent)
             }
 
         })
+        root.recyclerViewLiked.adapter = likedAdapter
 
-        root.recyclerViewLiked.adapter = rvAdapters
         return root
     }
 
@@ -78,8 +81,6 @@ class LikedFragment : Fragment() {
         menu.clear()
         inflater.inflate(R.menu.menu2,menu)
         super.onCreateOptionsMenu(menu, inflater)
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -5,15 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wallpaper_exam.R
+import com.example.wallpaper_exam.models.PhotoModel
+import com.example.wallpaper_exam.models.Result
+import com.example.wallpaper_exam.models.inModel.RandomModel
+import com.example.wallpaper_exam.models.inModel.RandomModelItem
+import com.example.wallpaper_exam.models.keshmodel.KeshPhotoModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class RvAdapters(var list: ArrayList<Int>,var onMyItemClickListener: OnMyItemClickListener):RecyclerView.Adapter<RvAdapters.MyViewHolder>() {
+class RvAdapters(var list: ArrayList<RandomModelItem>,var onMyItemClickListener: OnMyItemClickListener):RecyclerView.Adapter<RvAdapters.MyViewHolder>() {
     inner class MyViewHolder(var itemView:View):RecyclerView.ViewHolder(itemView){
-        fun onBind(image:Int){
-            itemView.image_view.setImageResource(image)
-
-            itemView.setOnClickListener {
-                onMyItemClickListener.onMyItemClick(image)
+        fun onBind(model:RandomModelItem){
+            Picasso.get().load(model.urls.small).into(itemView.image_view)
+//            itemView.image_view.setImageResource(image)
+            itemView.image_view.setOnClickListener {
+                onMyItemClickListener.onMyItemClick(model.urls.small)
             }
         }
     }
@@ -33,6 +39,6 @@ class RvAdapters(var list: ArrayList<Int>,var onMyItemClickListener: OnMyItemCli
     }
 
     interface OnMyItemClickListener{
-        fun onMyItemClick(image: Int)
+        fun onMyItemClick(image: String)
     }
 }

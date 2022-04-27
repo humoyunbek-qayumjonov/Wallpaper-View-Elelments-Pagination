@@ -1,6 +1,6 @@
 package com.example.wallpaper_exam.models
 
-data class ImageModel(
+data class PagerModel(
     var titleName: String,
     var imageList: ArrayList<Int>
 )

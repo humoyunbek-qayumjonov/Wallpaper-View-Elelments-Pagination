@@ -4,19 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.wallpaper_exam.R
 import com.example.wallpaper_exam.adapters.WallpaperAdapter
-import com.example.wallpaper_exam.models.ImageModel
+import com.example.wallpaper_exam.models.PagerModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_popular.view.*
 import kotlinx.android.synthetic.main.tab_item.view.*
 
 class PopularFragment : Fragment() {
-    lateinit var categoryList: ArrayList<ImageModel>
+    lateinit var categoryList: ArrayList<PagerModel>
     lateinit var imageList: ArrayList<Int>
     lateinit var wallpaperAdapter: WallpaperAdapter
 
@@ -37,11 +35,11 @@ class PopularFragment : Fragment() {
             imageList.add(R.drawable.phone)
         }
         categoryList = ArrayList()
-        categoryList.add(ImageModel("ALL", imageList))
-        categoryList.add(ImageModel("NEW", imageList))
-        categoryList.add(ImageModel("ANIMALS", imageList))
-        categoryList.add(ImageModel("TECHNOLOGY", imageList))
-        categoryList.add(ImageModel("NATURE", imageList))
+        categoryList.add(PagerModel("ALL", imageList))
+        categoryList.add(PagerModel("NEW", imageList))
+        categoryList.add(PagerModel("ANIMALS", imageList))
+        categoryList.add(PagerModel("TECHNOLOGY", imageList))
+        categoryList.add(PagerModel("NATURE", imageList))
         wallpaperAdapter = WallpaperAdapter(categoryList, requireActivity())
         root.view_Pager_popular.adapter = wallpaperAdapter
 

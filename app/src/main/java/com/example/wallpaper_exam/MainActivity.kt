@@ -8,6 +8,7 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.*
@@ -16,6 +17,7 @@ import com.google.android.material.navigation.NavigationBarView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.tab_item.view.*
 
 @Suppress("UNREACHABLE_CODE")
 class MainActivity : AppCompatActivity(),ImageFragment.onSomeEventListener {
@@ -28,46 +30,32 @@ class MainActivity : AppCompatActivity(),ImageFragment.onSomeEventListener {
         setSupportActionBar(toolbar)
 
 
-        nav_view.itemIconTintList = null
+       nav_view.itemIconTintList = null
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        nav_view.setupWithNavController(navController)
+        bottomBar.setupWithNavController(navController)
         appBarConfiguration = AppBarConfiguration(setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_liked), drawer_layout)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        nav_view.setupWithNavController(navController)
-        bottomBar.setupWithNavController(navController)
-
-        bottomBar.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_home->{
-                    navController.navigate(R.id.nav_home)
-                }
-                R.id.nav_gallery->{
-                    navController.navigate(R.id.nav_gallery)
-                }
-                R.id.nav_slideshow->{
-                    navController.navigate(R.id.nav_slideshow)
-
-                }
-                R.id.nav_liked->{
-                    navController.navigate(R.id.nav_liked)
-                }
-            }
-            true
         }
 
 
-        }
-
-
-    private fun setBottom() {
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.action_settings->{
+                val intent = Intent(this,SearchActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
@@ -76,7 +64,7 @@ class MainActivity : AppCompatActivity(),ImageFragment.onSomeEventListener {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun someEvent(s: Int?) {
+    override fun someEvent(s: String?) {
         val intent = Intent(this,SecondActivity::class.java)
         intent.putExtra("image1",s)
         startActivity(intent)

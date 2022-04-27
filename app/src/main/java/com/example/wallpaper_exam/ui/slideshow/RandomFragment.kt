@@ -1,14 +1,28 @@
 package com.example.wallpaper_exam.ui.slideshow
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.homework5_92.adapters.RvAdapters
 import com.example.wallpaper_exam.ImageFragment
 import com.example.wallpaper_exam.R
+import com.example.wallpaper_exam.adapters.PaginationAdapter
+import com.example.wallpaper_exam.models.PhotoModel
+import com.example.wallpaper_exam.models.Result
+import com.example.wallpaper_exam.models.inModel.RandomModel
+import com.example.wallpaper_exam.models.inModel.RandomModelItem
+import com.example.wallpaper_exam.retrofit.ApiClient
+import com.example.wallpaper_exam.utils.PaginationScrollListener
+import kotlinx.android.synthetic.main.fragment_image2.view.*
 import kotlinx.android.synthetic.main.fragment_random.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.Exception
 
 class RandomFragment : Fragment() {
@@ -27,32 +41,45 @@ class RandomFragment : Fragment() {
     }
 
     lateinit var rvAdapters: RvAdapters
-    lateinit var imageList: ArrayList<Int>
+    lateinit var gridLayoutManager: GridLayoutManager
+    lateinit var root:View
+    lateinit var list:ArrayList<RandomModelItem>
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_random, container, false)
-        imageList = ArrayList()
-        for (i in 0..20) {
-            imageList.add(R.drawable.cosmos)
-            imageList.add(R.drawable.mi)
-            imageList.add(R.drawable.nature1)
-            imageList.add(R.drawable.people)
-            imageList.add(R.drawable.phone)
-        }
-        rvAdapters = RvAdapters(imageList, object : RvAdapters.OnMyItemClickListener {
-            override fun onMyItemClick(image: Int) {
-                someEventListener?.someEvent(image)
+        root = inflater.inflate(R.layout.fragment_random, container, false)
+        list = ArrayList()
+        gridLayoutManager = GridLayoutManager(context,3)
+        ApiClient.apiService2.getRandomPhoto(30).enqueue(object : Callback<RandomModel> {
+            override fun onResponse(call: Call<RandomModel>, response: Response<RandomModel>) {
+                if (response.isSuccessful){
+                    root.progressbarRandom.visibility = View.GONE
+                    val results = response.body()
+                    list = results!!
+                    rvAdapters = RvAdapters(list, object : RvAdapters.OnMyItemClickListener {
+                        override fun onMyItemClick(image: String) {
+
+                        }
+
+                    })
+                    root.recyclerViewRandom.layoutManager = gridLayoutManager
+                    root.recyclerViewRandom.adapter = rvAdapters
+                }
+            }
+
+            override fun onFailure(call: Call<RandomModel>, t: Throwable) {
+                Log.d(TAG, "onFailure: ${t.message}")
             }
 
         })
 
-        root.recyclerViewRandom.adapter = rvAdapters
+
         return root
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)

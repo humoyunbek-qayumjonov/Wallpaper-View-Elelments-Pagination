@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdk 31
+    buildToolsVersion '31.0.0'
 
     defaultConfig {
         applicationId "com.example.wallpaper_exam"
@@ -31,6 +31,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+    ndkVersion '23.1.7779620'
 }
 
 dependencies {
@@ -55,4 +60,11 @@ dependencies {
 
     implementation 'com.android.support:design:30.1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
 }
